@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dossier</string>
+    <string name="greeting">Hello World!</string>
+    <string name="change">Change to አማርኛ</string>
+    <string name="chang_en">Change to English</string>
+    <string name="form_results">Form Results</string>
+    <string name="submit">Submit</string>
+</resources>

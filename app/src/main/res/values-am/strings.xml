@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ዶሴ</string>
+    <string name="greeting">እንደምነሽ አለም!</string>
+    <string name="change">ወደ አማርኛ ቀይር</string>
+    <string name="chang_en">ወደ English ቀይር</string>
+    <string name="form_results">የመዝገብ ውጤቶች</string>
+    <string name="submit">ላክ</string>
+</resources>
