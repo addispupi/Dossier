@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/cardview_dark_background"/>
     <stroke android:color="#FF018786"
-            android:width="10dp"/>
+            android:width="5dp"/>
     <corners android:radius="200dp"/>
 </shape>

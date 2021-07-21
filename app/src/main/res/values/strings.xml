@@ -6,4 +6,21 @@
     <string name="submit">Submit</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Mobile Phone Number</string>
+    <string name="register_account">REGISTER ACCOUNT</string>
+    <string name="email">Email</string>
+    <string name="gender_type">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="select_your_age">Select your Age</string>
+    <string name="department">Work Department</string>
+
+    <!-- departments-->
+    <string-array name="department">
+        <item>Programmer</item>
+        <item>UI Designer</item>
+        <item>UX Designer</item>
+        <item>System Developer</item>
+    </string-array>
 </resources>

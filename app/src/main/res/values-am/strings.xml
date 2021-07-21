@@ -5,4 +5,23 @@
     <string name="chang_en">ወደ English ቀይር</string>
     <string name="form_results">የመዝገብ ውጤቶች</string>
     <string name="submit">ላክ</string>
+    <string name="first_name">የመጀመሪያ ስም</string>
+    <string name="last_name">የአባት ስም</string>
+    <string name="password">ቁልፍ</string>
+    <string name="phone_number">ስልክ ቁጥር</string>
+    <string name="register_account">መዝገብ ለመክፈት</string>
+    <string name="email">ኢሜል</string>
+    <string name="gender_type">ጾታ</string>
+    <string name="male">ወንድ</string>
+    <string name="female">ሴት</string>
+    <string name="select_your_age">እድሜ ለመምረጥ</string>
+    <string name="department">የስራ ክፍል</string>
+
+    <!-- departments-->
+    <string-array name="department">
+        <item>ፕሮግራመር</item>
+        <item>ዩዘር ኢንተርፌስ ዲዛይነር</item>
+        <item>ዩዘር ኤክስፒሪያንስ ዲዛይነር</item>
+        <item>መተግበሪያ አበልጻጊ</item>
+    </string-array>
 </resources>

@@ -13,9 +13,4 @@ public class FormResults extends AppCompatActivity {
         setContentView(R.layout.activity_form_results);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.language, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 }

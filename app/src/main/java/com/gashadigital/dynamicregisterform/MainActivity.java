@@ -1,10 +1,14 @@
 package com.gashadigital.dynamicregisterform;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -33,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_main);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.app_name);
 
         btnSubmit = findViewById(R.id.btn_submit);
         imgView = findViewById(R.id.img_profile);
@@ -49,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FormResults.class));
+                Intent intent = new Intent(MainActivity.this, FormResults.class);
+                startActivity(intent);
+
             }
         });
     }
@@ -81,12 +91,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setLanguage(Context context, String lan) {
+    public void setLanguage(Activity context, String lan) {
         Locale locale = new Locale(lan);
         Configuration conf = new Configuration();
         conf.locale = locale;
-        context.getResources().updateConfiguration(conf, context.getResources().getDisplayMetrics());
-        recreate();
+        context.getBaseContext().getResources().updateConfiguration(conf, context.getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lan);
+        editor.apply();
+    }
+
+    public void loadLocale(){
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = pref.getString("My_Lang","am");
+        setLanguage(this,language);
     }
 
 
@@ -102,11 +120,13 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case R.id.am:
                 Toast.makeText(this,"am", Toast.LENGTH_LONG).show();
-                setLanguage(this, "am");
+                setLanguage(this,"am");
+                recreate();
                 return true;
             case R.id.en:
                 Toast.makeText(this,"en", Toast.LENGTH_LONG).show();
-                setLanguage(this, "en");
+                setLanguage(this,"en");
+                recreate();
                 return true;
             default:
                 return super.onContextItemSelected(item);
