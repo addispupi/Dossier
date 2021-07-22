@@ -5,8 +5,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -18,8 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -32,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgView;
     Uri userUri;
     Bitmap bitmap;
+    EditText firstName, secondName, email, telephone, password;
+    RadioGroup genderType;
+    RadioButton gender;
+    DatePicker dateOfBirth;
+    Spinner comboBox;
     public static final int PICK_IMAGE = 1;
 
     @Override
@@ -43,9 +51,18 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.app_name);
 
+        // Set Fields
         btnSubmit = findViewById(R.id.btn_submit);
         imgView = findViewById(R.id.img_profile);
         btnPickImg = findViewById(R.id.btn_upload);
+        firstName = findViewById(R.id.first_name);
+        secondName = findViewById(R.id.second_name);
+        genderType = findViewById(R.id.gender);
+        dateOfBirth = findViewById(R.id.date_of_birth);
+        email = findViewById(R.id.email);
+        telephone = findViewById(R.id.tel);
+        password = findViewById(R.id.pass);
+        comboBox = findViewById(R.id.department);
 
         btnPickImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,11 +74,58 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FormResults.class);
-                startActivity(intent);
+
+                if(checkFields() == false){
+                    Toast.makeText(MainActivity.this,
+                                    "All Fields must be filled correctly, Please review the form again !",
+                                    Toast.LENGTH_LONG).show();
+                }
+                else {
+                    String fullName = firstName.getText().toString() + " " + secondName.getText().toString();
+                    int selectedType = genderType.getCheckedRadioButtonId();
+                    gender = findViewById(selectedType);
+                    int month = dateOfBirth.getMonth();
+                    int day = dateOfBirth.getDayOfMonth();
+                    int year = dateOfBirth.getYear();
+                    String birthDte = (day+"-"+month+"-"+year);
+                    String selectedDep = comboBox.getSelectedItem().toString();
+                    String emailTxt = email.getText().toString();
+                    String tel = telephone.getText().toString();
+                    String pass = password.getText().toString();
+
+                    Intent intent = new Intent(MainActivity.this, FormResults.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fullName", fullName);
+                    bundle.putString("gender", gender.getText().toString());
+                    bundle.putString("birth", birthDte);
+                    bundle.putString("dep", selectedDep);
+                    bundle.putString("email", emailTxt);
+                    bundle.putString("tel", tel);
+                    bundle.putString("pass", pass);
+//                    intent.setData(userUri);
+                    bundle.putString("imgSrc", userUri.toString());
+
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
 
             }
         });
+    }
+
+    private boolean checkFields() {
+        int checkedID = genderType.getCheckedRadioButtonId();
+        if (firstName.getText().toString().trim().length() < 2 ||
+            secondName.getText().toString().trim().length() < 2 ||
+            checkedID < 0 ||
+            userUri.toString().length() < 1 ||
+            email.getText().toString().trim().length() < 8  ||
+            telephone.getText().toString().trim().length() < 11 ||
+            password.getText().toString().trim().length() < 9 ){
+            return false;
+        }
+        else
+        return true;
     }
 
     private void openGallery() {

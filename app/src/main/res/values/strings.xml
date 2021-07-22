@@ -15,6 +15,8 @@
     <string name="female">Female</string>
     <string name="select_your_age">Select your Age</string>
     <string name="department">Work Department</string>
+    <string name="full_name">Full Name</string>
+    <string name="age">Age</string>
 
     <!-- departments-->
     <string-array name="department">

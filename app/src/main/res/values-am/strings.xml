@@ -16,6 +16,8 @@
     <string name="female">ሴት</string>
     <string name="select_your_age">እድሜ ለመምረጥ</string>
     <string name="department">የስራ ክፍል</string>
+    <string name="full_name">Full Name</string>
+    <string name="age">እድሜ</string>
 
     <!-- departments-->
     <string-array name="department">
