@@ -185,12 +185,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.am:
                 Toast.makeText(this,"am", Toast.LENGTH_LONG).show();
                 setLanguage(this,"am");
-                recreate();
+                this.setContentView(R.layout.activity_main);
                 return true;
             case R.id.en:
                 Toast.makeText(this,"en", Toast.LENGTH_LONG).show();
                 setLanguage(this,"en");
-                recreate();
+                this.setContentView(R.layout.activity_main);
                 return true;
             default:
                 return super.onContextItemSelected(item);
